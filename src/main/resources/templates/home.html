@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+  <link href="../static/css/style.css" rel="stylesheet"
+        th:href="@{/css/style.css}" />
+</head>
+<body>
+<div>
+  <h1>Temperature Converter</h1>
+  <form th:action="@{/logout}" method="post" class="logout-form">
+    <input type="submit" value="Sign Out"/>
+  </form>
+  <div th:switch="${error}" >
+    <p th:case="'FahrenheitFormatError'" class=error>
+      Error: Fahrenheit must be a number
+    </p>
+    <p th:case="'CelsiusFormatError'" class=error>
+      Error: Celsius must be a number
+    </p>
+    <p th:case="'OperationFormatError'" class=error>
+      Error: Wrong operation
+    </p>
+  </div>
+  <form th:action="@{/convert}" method="get" class="converter-form">
+    <table>
+      <tr>
+        <td><label for="celsius">Celsius:</label></td>
+        <td><input name="celsius"
+                   id="celsius"
+                   th:name="celsius" th:value="${celsius}"></td>
+      </tr>
+      <tr>
+        <td><label for="fahrenheit">Fahrenheit:</label></td>
+        <td><input name="fahrenheit"
+                   id="fahrenheit"
+                   th:name="fahrenheit" th:value="${fahrenheit}"></td>
+      </tr>
+      <tr>
+        <td><button type="submit" th:name="operation" th:value="CelsiusToFarenheit">
+          Celsius to Fahrenheit</button></td>
+        <td><button type="submit" th:name="operation" th:value="FarenheitToCelsius">
+          Fahrenheit to Celsius</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

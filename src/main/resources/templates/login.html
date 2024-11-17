@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Converter Login</title>
+    <link href="../static/css/style.css" rel="stylesheet"
+          th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:if="${param.error}" class="error">
+    <p>Invalid username or password</p>
+</div>
+<div th:if="${param.logout}">
+    <p>You have logged out</p>
+</div>
+<form th:action="@{/login}" method="post" class="login-form">
+    <label for="username"><b>User Name</b></label>
+    <input type="text" id="username" name="username"/>
+    <label for="password"><b>Password</b></label>
+    <input type="password" id="password" name="password"/>
+    <input type="submit" value="Sign In"/>
+</form>
+</body>
+</html>
